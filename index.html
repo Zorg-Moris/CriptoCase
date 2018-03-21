@@ -54,16 +54,19 @@
                             <input type="text" id="inputCalc" value="1">
                             <div id="resCalc"></div>
                         </div>
-                        <div id="btnGrapf"></div>
+                        <div id="btnGrapf">
+                            <input type="button" id="grapfBtn" value="График">
+                        </div>
                     </div>
-                    <div id="date">
-                        <input type="text" id="start">
-                        <input type="text" id="end">
 
+                    <div id="showGrapf" class="visibleGrapf">
+                        <div id="date">
+                            <input type="text" id="start">
+                            <input type="text" id="end">
+                        </div>
+                        <div id="info"></div>
+                        <canvas id="myChart" class="graph"></canvas>
                     </div>
-                    <div id="info"></div>
-                    <canvas id="myChart" class="graph"></canvas>
-
                 </div>
 
                 <div id="overlay"></div>

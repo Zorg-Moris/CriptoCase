@@ -1,6 +1,10 @@
 "use strict"
 
+
 function Rate() {
+
+    grapfDate.apply(this, arguments);
+
     let _currentPrice = 0;
     let _yesterdayPrice = 0;
 
@@ -41,42 +45,38 @@ function Rate() {
         return _historicalDate;
     }
 
-    this.clenerHDarr = function () {
-        return _historicalDate.length = 0;
+    this.clenerHDate = function () {
+        _historicalDate.length = 0;
     }
 
-    this.clenetHRarr = function () {
-        return _historicalRate.length = 0;
+    this.clenerHRate = function () {
+        _historicalRate.length = 0;
     }
-
 };
 
-Rate.prototype.calendarDate = function (start, end) {
-    this.startDate = start;
-    this.endDate = end;
-}
 
-Rate.prototype.prices = function () {
-    let price = this.getHistoricalRate();
-    return price;
-};
+// Rate.prototype.prices = function () {
+//     let price = this.getHistoricalRate();
+//     return price;
+// };
 
-Rate.prototype.date = function () {
-    let date = this.getHistoricalDate();
-    return date;
-};
+// Rate.prototype.date = function () {
+//     let date = this.getHistoricalDate();
+//     return date;
+// };
 
+var myChart;
 
 Rate.prototype.grapf = function () {
     var ctx = document.getElementById("myChart").getContext('2d');
     //var ctx = $("#myChart");
-    var myChart = new Chart(ctx, {
+    myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: this.date(),
+            labels: this.getHistoricalDate(),
             datasets: [{
                 label: '# of Votes',
-                data: this.prices(),
+                data: this.getHistoricalRate(),
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255,99,132,1)',
                 borderWidth: 1
@@ -97,8 +97,8 @@ Rate.prototype.grapf = function () {
                 yAxes: [{
 
                     ticks: {
-                        min: this.minGrapfValue(),
-                        max: this.maxGrapfValue(),
+                        suggestedMin: this.minGrapfValue(),
+                        suggestedMax: this.maxGrapfValue(),
                         stepSize: 200
                     }
                 }]
@@ -107,19 +107,61 @@ Rate.prototype.grapf = function () {
     });
 };
 
+Rate.prototype.removeData = function (chart) {
+
+    let max = this.maxGrapfValue();
+    let min = this.minGrapfValue();
+
+    console.log("MAX: " + max);
+    console.log("MIN: " + min);
+
+    chart.update({
+        duration: 5000,
+        easing: 'easeOutBounce'
+    })
+
+}
+
 Rate.prototype.minGrapfValue = function () {
-    let price = this.prices();
+    let price = this.getHistoricalRate();
     let res = Math.min.apply(null, price);
     res = Math.floor(res / 100) * 100 - 300;
     return res;
 };
 
 Rate.prototype.maxGrapfValue = function () {
-    let price = this.prices();
+    let price = this.getHistoricalRate();
     let res = Math.max.apply(null, price);
     res = Math.floor(res / 100) * 100 + 300;
     return res;
 };
 
+function grapfDate() {
+
+    let _startDate = 0;
+    let _endDate = 0;
+
+    this.setStartDate = function (start) {
+        _startDate = start;
+    }
+
+    this.getStartDate = function () {
+        return _startDate;
+    }
+
+    this.setEndDate = function (end) {
+        _endDate = end;
+    }
+    this.getEndDate = function () {
+        return _endDate;
+    }
+
+};
+
+
+
+//Rate.prototype = Object.create(grapfDate.prototype);
+//grapfDate.prototype = Object.create(Rate.prototype);
 
 let bitcoinRate = new Rate();
+let rippleRate = new Rate();

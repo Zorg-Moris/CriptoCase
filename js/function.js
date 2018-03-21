@@ -43,6 +43,15 @@ $("#inputCalc").on("keyup", function () {
 
 });
 
+$("#grapfBtn").on("click", function () {
+
+    $("#showGrapf").show(1000);
+    setTimeout(function () {
+        bitcoinRate.grapf();
+
+    }, 1500);
+});
+
 
 $("#start").datepicker({
     selectOtherMonths: true,
@@ -56,10 +65,18 @@ $("#start").datepicker({
     maxDate: "-3d",
 
     onSelect: function (date, datepicker) {
+
         let selectedDate = $("#start").datepicker("getDate");
         selectedDate = $.datepicker.formatDate("yy-mm-dd", selectedDate);
+        bitcoinRate.setStartDate(selectedDate);
 
-        console.log(selectedDate);
+        getHistoricalRate();
+
+        setTimeout(function () {
+
+            bitcoinRate.removeData(myChart);
+
+        }, 2000);
 
     }
 });
@@ -79,64 +96,38 @@ $("#end").datepicker({
     onSelect: function (date, datepicker) {
         let selectedDate = $("#end").datepicker("getDate");
         selectedDate = $.datepicker.formatDate("yy-mm-dd", selectedDate);
-      
-        console.log(selectedDate);
+        bitcoinRate.setEndDate(selectedDate);
+
+        getHistoricalRate();
+
+        setTimeout(function () {
+
+            bitcoinRate.removeData(myChart);
+
+        }, 2000);
+
+        let res = bitcoinRate.getEndDate();
+        console.log("bitcoin End: " + res);
+
+        let ripple = rippleRate.getEndDate();
+        console.log("Ripple END: " + ripple);
 
     }
 });
 
+function defaultDate() {
 
+    $("#start").datepicker("setDate", "-7d");
+    $("#end").datepicker("setDate", "-1d");
 
-// function grapf() {
-//     var ctx = document.getElementById("myChart").getContext('2d');
-//     //var ctx = $("#myChart");
-//     var myChart = new Chart(ctx, {
-//         type: 'bar',
-//         data: {
-//             labels: this.date(),
-//             datasets: [{
-//                 label: '# of Votes',
-//                 data: this.prices(),
-//                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
-//                 borderColor: 'rgba(255,99,132,1)',
-//                 borderWidth: 1
-//             }]
-//         },
-//         options: {
-//             tooltips: {
-//                 borderColor: 'rgb(233, 150, 122)',
-//                 backgroundColor: 'rgb(138, 43, 226)'
-//             },
+    let startDate = $("#start").datepicker("getDate");
+    startDate = $.datepicker.formatDate("yy-mm-dd", startDate);
+    bitcoinRate.setStartDate(startDate);
 
-//             animation: {
-//                 duration: 3000,
-//                 easing: 'easeOutBack' //'easeInOutBack'
-//             },
+    let endDate = $("#end").datepicker("getDate");
+    endDate = $.datepicker.formatDate("yy-mm-dd", endDate);
+    bitcoinRate.setEndDate(endDate);
 
-//             scales: {
-//                 yAxes: [{
+    getHistoricalRate();
 
-//                     ticks: {
-//                         min: minGrapfValue.call(bitcoinRate), //this.minGrapfValue(),
-//                         max: maxGrapfValue.call(bitcoinRate), //this.maxGrapfValue(),
-//                         stepSize: 200
-//                     }
-//                 }]
-//             }
-//         }
-//     });
-// };
-
-// function minGrapfValue() {
-//     let price = this.prices();
-//     let res = Math.min.apply(null, price);
-//     res = Math.floor(res / 100) * 100 - 300;
-//     return res;
-// };
-
-// function maxGrapfValue() {
-//     let price = this.prices();
-//     let res = Math.max.apply(null, price);
-//     res = Math.floor(res / 100) * 100 + 300;
-//     return res;
-// };
+}

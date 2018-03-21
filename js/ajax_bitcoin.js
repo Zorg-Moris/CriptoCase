@@ -45,18 +45,20 @@ function getCurrentRateYesterday(currentPrice) {
         }
     )
 };
-
+ 
 function getHistoricalRate() {
+   let startDate = String (bitcoinRate.getStartDate());
+    let endDate = String(bitcoinRate.getEndDate());
     $.get(
-        `https://api.coindesk.com/v1/bpi/historical/close.json?start=${"2018-03-01"}&end=${"2018-03-08"}`,
+        `https://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}`,
         function (data) {
             data = JSON.parse(data);
 
             console.log(data);
             console.log(data.bpi);
 
-            bitcoinRate.clenetHRarr();
-            bitcoinRate.clenerHDarr();
+            bitcoinRate.clenerHRate();
+            bitcoinRate.clenerHDate();
 
             for (var key in data.bpi) {
                 // console.log("DATA: " + key);
@@ -69,4 +71,3 @@ function getHistoricalRate() {
         }
     )
 };
-

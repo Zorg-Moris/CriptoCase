@@ -78,8 +78,8 @@ a {
 
 .flex-container {
     display: flex;
-    /* justify-content: center; */
-    justify-content: space-around;
+    justify-content: center;
+    /* justify-content: space-around; */
     flex-wrap: wrap;
     border: 4px solid dodgerblue;
     align-items: center;
@@ -173,23 +173,30 @@ a {
     border: 2px rgb(230, 223, 223) solid;
 }
 
-.nameShop {
+/* .nameShop {
     margin: auto;
     height: 50px;
     width: 600px;
     text-align: center;
     font-size: 40px;
-    /* line-height: 45px; */
-}
+  
+} */
 
 .infoTable img {
     width: 100%;
     height: 100%;
 }
 
+.visibleGrapf {
+    width: 100%;
+    height: auto;
+    display: none;
+    text-align: center;
+}
+
 .graph {
     /* position: relative; */
     width: 100%;
-    height: 800px;
+    height: auto;
     border: 2px solid darkviolet;
 }
