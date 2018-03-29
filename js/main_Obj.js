@@ -107,17 +107,6 @@ Rate.prototype.grapf = function () {
     });
 };
 
-Rate.prototype.removeData = function (chart) {
-
-    chart.update({
-        duration: 5000,
-        easing: 'easeOutBounce'
-    });
-};
-
-Rate.prototype.destroyData = function (chart) {
-    chart.destroy();
-};
 
 Rate.prototype.minGrapfValue = function () {
     let price = this.getHistoricalRate();

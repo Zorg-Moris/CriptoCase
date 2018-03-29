@@ -53,7 +53,7 @@ $("#grapfBtn").on("click", function () {
     }
     else {
         $("#showGrapf").toggleClass("visibleGrapf invisibleGrapf ");
-        bitcoinRate.destroyData(myChart);
+        destroyData(myChart);
     }
 });
 
@@ -79,7 +79,7 @@ $("#start").datepicker({
 
         setTimeout(function () {
 
-            bitcoinRate.removeData(myChart);
+            removeData(myChart);
 
         }, 2000);
 
@@ -107,10 +107,9 @@ $("#end").datepicker({
 
         setTimeout(function () {
 
-            bitcoinRate.removeData(myChart);
+            removeData(myChart);
 
         }, 2000);
-
     }
 });
 
@@ -129,4 +128,15 @@ function defaultDate() {
 
     getHistoricalRate();
 
-}
+};
+
+function removeData(chart) {
+    chart.update({
+        duration: 5000,
+        easing: "easeOutBounce"
+    });
+};
+
+function destroyData(chart) {
+    chart.destroy();
+};
