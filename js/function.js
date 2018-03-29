@@ -44,12 +44,17 @@ $("#inputCalc").on("keyup", function () {
 });
 
 $("#grapfBtn").on("click", function () {
+    if ($("#showGrapf").hasClass("invisibleGrapf")) {
 
-    $("#showGrapf").show(1000);
-    setTimeout(function () {
-        bitcoinRate.grapf();
-
-    }, 1500);
+        $("#showGrapf").toggleClass("invisibleGrapf visibleGrapf");
+        setTimeout(function () {
+            bitcoinRate.grapf();
+        }, 1500);
+    }
+    else {
+        $("#showGrapf").toggleClass("visibleGrapf invisibleGrapf ");
+        bitcoinRate.destroyData(myChart);
+    }
 });
 
 
@@ -105,12 +110,6 @@ $("#end").datepicker({
             bitcoinRate.removeData(myChart);
 
         }, 2000);
-
-        let res = bitcoinRate.getEndDate();
-        console.log("bitcoin End: " + res);
-
-        let ripple = rippleRate.getEndDate();
-        console.log("Ripple END: " + ripple);
 
     }
 });

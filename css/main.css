@@ -187,10 +187,14 @@ a {
     height: 100%;
 }
 
+.invisibleGrapf{
+    display: none;
+}
+
 .visibleGrapf {
     width: 100%;
     height: auto;
-    display: none;
+    /* display: none; */
     text-align: center;
 }
 

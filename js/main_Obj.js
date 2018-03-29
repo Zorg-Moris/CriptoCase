@@ -109,18 +109,15 @@ Rate.prototype.grapf = function () {
 
 Rate.prototype.removeData = function (chart) {
 
-    let max = this.maxGrapfValue();
-    let min = this.minGrapfValue();
-
-    console.log("MAX: " + max);
-    console.log("MIN: " + min);
-
     chart.update({
         duration: 5000,
         easing: 'easeOutBounce'
-    })
+    });
+};
 
-}
+Rate.prototype.destroyData = function (chart) {
+    chart.destroy();
+};
 
 Rate.prototype.minGrapfValue = function () {
     let price = this.getHistoricalRate();
