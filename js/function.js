@@ -6,21 +6,20 @@ function calcProcent(current, currentYesterday) {
 
     let resDigit = current - currentYesterday;
 
-    console.log("resDigit - " + "  " + resDigit);
-
     resDigit = resDigit.toFixed(2);
-
-    console.log("resDigit - " + "  " + resDigit);
 
     if (resPercent > 0) {
         $("#changeRate").css("backgroundColor", "SpringGreen");
-        $("#changePercent").html(`+ ${resPercent}%`);
-        $("#changeDigit").html(`+$${resDigit}`);
+        // $("#changePercent").html(`+ ${resPercent}%`);
+        // $("#changeDigit").html(`+$${resDigit}`);
     } else {
         $("#changeRate").css("backgroundColor", "red");
-        $("#changePercent").html(`${resPercent}%`);
-        $("#changeDigit").html(`$${resDigit}`);
+        // $("#changePercent").html(`${resPercent}%`);
+        // $("#changeDigit").html(`$${resDigit}`);
     }
+
+    $("#changePercent").html(`${resPercent}%`);
+    $("#changeDigit").html(`$${resDigit}`);
 };
 
 
@@ -31,13 +30,7 @@ $("#inputCalc").on("keyup", function () {
         return;
     } else {
         let res = currentPrice * value;
-
-        console.log(res);
-
         res = res.toFixed(2);
-
-        console.log("toFixed" + "  " + res);
-
         $("#resCalc").html(res);
     }
 
@@ -45,13 +38,11 @@ $("#inputCalc").on("keyup", function () {
 
 $("#grapfBtn").on("click", function () {
     if ($("#showGrapf").hasClass("invisibleGrapf")) {
-
         $("#showGrapf").toggleClass("invisibleGrapf visibleGrapf");
         setTimeout(function () {
             bitcoinRate.grapf();
         }, 1500);
-    }
-    else {
+    } else {
         $("#showGrapf").toggleClass("visibleGrapf invisibleGrapf ");
         destroyData(myChart);
     }
@@ -139,4 +130,15 @@ function removeData(chart) {
 
 function destroyData(chart) {
     chart.destroy();
+};
+
+
+async function main() {
+
+    let currentPrice = await getCurrentRate();
+    let yesterdayPrice = await getCurrentRateYesterday();
+  
+    calcProcent(currentPrice, yesterdayPrice);
+ 
+    defaultDate();
 };
