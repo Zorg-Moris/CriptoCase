@@ -71,18 +71,13 @@ a {
     border-bottom: 4px solid black;
 }
 
-/* img {
-    width: 220px;
-    height: 300px;
-} */
-
 .flex-container {
+    min-width: 450px;
     display: flex;
     justify-content: center;
-    /* justify-content: space-around; */
     flex-wrap: wrap;
     border: 4px solid rgba(222, 243, 233, 0.74);
-    background-color: #eee;
+    background-color: #FFFFE0;
     align-items: center;
 }
 
@@ -92,7 +87,6 @@ a {
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    /* border: 2px solid red; */
     width: 100%;
     height: auto;
 }
@@ -100,7 +94,6 @@ a {
 .infoHeder>* {
     width: 15%;
     height: 50%;
-    /* border: 2px solid green; */
     line-height: 20px;
     text-align: center;
     font-size: 1.8vw;
@@ -110,9 +103,7 @@ a {
     margin-top: 10px;
     display: flex;
     justify-content: space-around;
-    /* align-items: center; */
     flex-wrap: wrap;
-    /* border: 2px solid red; */
     width: 100%;
     height: 100px;
 }
@@ -120,7 +111,6 @@ a {
 .infoTable>* {
     width: 15%;
     height: auto;
-    /* border: 2px solid green; */
     line-height: 80px;
     text-align: center;
     font-size: 2vw;
@@ -135,7 +125,6 @@ a {
 #changeRate>* {
     width: auto;
     height: auto;
-    /* border: 2px solid green; */
     line-height: 40px;
     text-align: center;
     font-size: 2vw;
@@ -150,7 +139,6 @@ a {
 #resCalc {
     width: auto;
     height: auto;
-    /* border: 2px solid green; */
     line-height: 40px;
     text-align: center;
     font-size: 2vw;
@@ -164,7 +152,7 @@ a {
     font-size: 2vw;
 }
 
-.footer {
+/* .footer {
     margin: auto;
     margin-top: 90%;
     position: relative;
@@ -172,15 +160,6 @@ a {
     width: 99%;
     height: 100px;
     border: 2px rgb(230, 223, 223) solid;
-}
-
-/* .nameShop {
-    margin: auto;
-    height: 50px;
-    width: 600px;
-    text-align: center;
-    font-size: 40px;
-  
 } */
 
 .infoTable img {
@@ -188,20 +167,49 @@ a {
     height: 100%;
 }
 
-.invisibleGrapf{
+.invisibleGrapf {
     display: none;
+}
+
+.alarm-input {
+    background-color: red;
 }
 
 .visibleGrapf {
     width: 100%;
     height: auto;
-    /* display: none; */
     text-align: center;
 }
 
 .graph {
-    /* position: relative; */
     width: 100%;
     height: auto;
-    border: 2px solid darkviolet;
+}
+
+.grapfBtn {
+    width: 40%;
+    height: 40%;
+    position: relative;
+    display: inline-block;
+    color: #777674;
+    font-weight: bold;
+    text-decoration: none;
+    user-select: none;
+    padding: 1em 2em;
+    outline: none;
+    border-radius: 3px / 100%;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .0) 30%, rgba(255, 255, 255, .8), rgba(255, 255, 255, .0) 70%), linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, .3)), linear-gradient(to right, rgba(125, 125, 125, 1), rgba(255, 255, 255, .9) 45%, rgba(125, 125, 125, .5)), linear-gradient(to right, rgba(125, 125, 125, 1), rgba(255, 255, 255, .9) 45%, rgba(125, 125, 125, .5)), linear-gradient(to right, rgba(223, 190, 170, 1), rgba(255, 255, 255, .9) 45%, rgba(223, 190, 170, .5)), linear-gradient(to right, rgba(223, 190, 170, 1), rgba(255, 255, 255, .9) 45%, rgba(223, 190, 170, .5));
+    background-repeat: no-repeat;
+    background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+    background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+    box-shadow: rgba(0, 0, 0, .5) 3px 10px 10px -10px;
+}
+
+a.grapfBtn:hover {
+    transition: .5s linear;
+    background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+}
+
+a.grapfBtn:active {
+    top: 1px;
 }

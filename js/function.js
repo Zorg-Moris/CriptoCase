@@ -10,12 +10,8 @@ function calcProcent(current, currentYesterday) {
 
     if (resPercent > 0) {
         $("#changeRate").css("backgroundColor", "SpringGreen");
-        // $("#changePercent").html(`+ ${resPercent}%`);
-        // $("#changeDigit").html(`+$${resDigit}`);
     } else {
         $("#changeRate").css("backgroundColor", "red");
-        // $("#changePercent").html(`${resPercent}%`);
-        // $("#changeDigit").html(`$${resDigit}`);
     }
 
     $("#changePercent").html(`${resPercent}%`);
@@ -39,6 +35,7 @@ $("#inputCalc").on("keyup", function () {
 $("#grapfBtn").on("click", function () {
     if ($("#showGrapf").hasClass("invisibleGrapf")) {
         $("#showGrapf").toggleClass("invisibleGrapf visibleGrapf");
+
         setTimeout(function () {
             bitcoinRate.grapf();
         }, 1500);
@@ -62,6 +59,9 @@ $("#start").datepicker({
 
     onSelect: function (date, datepicker) {
 
+        if ($("#date input").hasClass("alarm-input")) {
+            $("#date input").removeClass("alarm-input");
+        }
         let selectedDate = $("#start").datepicker("getDate");
         selectedDate = $.datepicker.formatDate("yy-mm-dd", selectedDate);
         bitcoinRate.setStartDate(selectedDate);
@@ -90,6 +90,11 @@ $("#end").datepicker({
     maxDate: "0d",
 
     onSelect: function (date, datepicker) {
+
+        if ($("#date input").hasClass("alarm-input")) {
+            $("#date input").removeClass("alarm-input");
+        }
+
         let selectedDate = $("#end").datepicker("getDate");
         selectedDate = $.datepicker.formatDate("yy-mm-dd", selectedDate);
         bitcoinRate.setEndDate(selectedDate);
@@ -137,8 +142,18 @@ async function main() {
 
     let currentPrice = await getCurrentRate();
     let yesterdayPrice = await getCurrentRateYesterday();
-  
+
     calcProcent(currentPrice, yesterdayPrice);
- 
+
     defaultDate();
+};
+
+
+async function intervalMain() {
+
+    let currentPrice = await getCurrentRate();
+    let yesterdayPrice = await getCurrentRateYesterday();
+
+    calcProcent(currentPrice, yesterdayPrice);
+
 };

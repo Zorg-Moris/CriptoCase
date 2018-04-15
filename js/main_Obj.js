@@ -55,20 +55,10 @@ function Rate() {
 };
 
 
-// Rate.prototype.prices = function () {
-//     let price = this.getHistoricalRate();
-//     return price;
-// };
-
-// Rate.prototype.date = function () {
-//     let date = this.getHistoricalDate();
-//     return date;
-// };
-
-var myChart;
+let myChart;
 
 Rate.prototype.grapf = function () {
-    var ctx = document.getElementById("myChart").getContext('2d');
+    let ctx = document.getElementById("myChart").getContext('2d');
     //var ctx = $("#myChart");
     myChart = new Chart(ctx, {
         type: 'bar',
