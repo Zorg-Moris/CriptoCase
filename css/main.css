@@ -29,9 +29,6 @@ a {
     font-size: 20px;
 }
 
-.heder-menu span {
-    border-bottom: 2px solid transparent;
-}
 
 .prod {
     font-size: 20px;
@@ -42,13 +39,6 @@ a {
     line-height: 50px;
 }
 
-.heder-menu span:hover {
-    border-bottom: 2px solid black;
-}
-
-.goods:hover {
-    background-color: #eee;
-}
 
 .menu {
     background: #fafafa;

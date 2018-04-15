@@ -20,9 +20,15 @@ function calcProcent(current, currentYesterday) {
 
 
 $("#inputCalc").on("keyup", function () {
+
+    if ($(this).hasClass("alarm-input")) {
+        $(this).removeClass("alarm-input");
+    }
+
     let value = parseFloat($(this).val());
     let currentPrice = bitcoinRate.getCurrentRate();
     if (isNaN(value)) {
+        $(this).addClass("alarm-input");
         return;
     } else {
         let res = currentPrice * value;
